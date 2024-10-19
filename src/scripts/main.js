@@ -1,9 +1,9 @@
 'use strict';
 
 // write code here
-const allInputs = document.querySelectorAll('form input');
+const allInputs = document.querySelectorAll('input');
 
-allInputs.forEach((input) => {
+allInputs.forEach((input, index) => {
   const label = document.createElement('label');
 
   label.classList.add('field-label');
@@ -13,7 +13,12 @@ allInputs.forEach((input) => {
 
   label.textContent = labelText;
 
-  const inputId = input.getAttribute('id');
+  let inputId = input.getAttribute('id');
+
+  if (!inputId) {
+    inputId = `input-${index}`;
+    input.setAttribute('id', inputId);
+  }
 
   label.setAttribute('for', inputId);
   input.setAttribute('placeholder', labelText);
